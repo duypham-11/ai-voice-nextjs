@@ -24,7 +24,7 @@
 
   --font-mona-sans: "Mona Sans", sans-serif;
 
-  --bg-pattern: url("/pattern.png");
+  --bg-pattern: url("/background.jpg");
 }
 
 :root {
@@ -303,7 +303,7 @@
 }
 
 @utility pattern {
-  @apply bg-[url('/pattern.png')] bg-top bg-no-repeat;
+  @apply bg-[url('/background.jpg')] bg-left bg-repeat-round;
 }
 
 @utility blue-gradient-dark {
