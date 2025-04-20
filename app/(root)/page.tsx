@@ -4,24 +4,23 @@ import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { dummyInterviews } from "@/constants";
 import InterviewCard from "@/components/InterviewCard";
-// import InterviewCard from "@/components/InterviewCard";
 
-// import { getCurrentUser } from "@/lib/actions/auth.action";
-// import {
-//   getInterviewsByUserId,
-//   getLatestInterviews,
-// } from "@/lib/actions/general.action";
+import { getCurrentUser } from "@/lib/actions/auth.action";
+import {
+  getInterviewsByUserId,
+  getLatestInterviews,
+} from "@/lib/actions/general.action";
 
 async function Home() {
-  // const user = await getCurrentUser();
+  const user = await getCurrentUser();
 
-  // const [userInterviews, allInterview] = await Promise.all([
-  //   getInterviewsByUserId(user?.id!),
-  //   getLatestInterviews({ userId: user?.id! }),
-  // ]);
+  const [userInterviews, allInterview] = await Promise.all([
+    getInterviewsByUserId(user?.id!),
+    getLatestInterviews({ userId: user?.id! }),
+  ]);
 
-  // const hasPastInterviews = userInterviews?.length! > 0;
-  // const hasUpcomingInterviews = allInterview?.length! > 0;
+  const hasPastInterviews = userInterviews?.length! > 0;
+  const hasUpcomingInterviews = allInterview?.length! > 0;
 
   return (
     <>
@@ -48,12 +47,8 @@ async function Home() {
 
       <section className="flex flex-col gap-6 mt-8">
         <h2>Your Interviews</h2>
-      {dummyInterviews.map((interview) => (
-        <InterviewCard {...interview}/>
-      ))}
 
-
-        {/* <div className="interviews-section">
+        <div className="interviews-section">
           {hasPastInterviews ? (
             userInterviews?.map((interview) => (
               <InterviewCard
@@ -69,17 +64,13 @@ async function Home() {
           ) : (
             <p>You haven&apos;t taken any interviews yet</p>
           )}
-        </div> */}
+        </div>
       </section>
 
       <section className="flex flex-col gap-6 mt-8">
         <h2>Take Interviews</h2>
-
-        {dummyInterviews.map((interview) => (
-        <InterviewCard {...interview}/>
-      ))}
-      
-        {/* <div className="interviews-section">
+ 
+        <div className="interviews-section">
           {hasUpcomingInterviews ? (
             allInterview?.map((interview) => (
               <InterviewCard
@@ -95,7 +86,7 @@ async function Home() {
           ) : (
             <p>There are no interviews available</p>
           )}
-        </div> */}
+        </div>
       </section>
     </>
   );
